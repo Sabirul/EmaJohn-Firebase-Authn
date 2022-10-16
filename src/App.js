@@ -8,6 +8,7 @@ import Inventory from './components/Inventory/Inventory';
 import { productsAndCartLoader } from './loaders/productsAndCartLoader';
 import Login from './components/LogIn/Login';
 import SignUp from './components/SignUp/SignUp';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       element: <Main></Main>,
       children: [
         {
-          path: '/',
+          path: '/shop',
           loader: () => fetch('products.json'),
           element: <Shop></Shop>
         },
@@ -28,7 +29,9 @@ function App() {
         },
         {
           path: 'inventory',
-          element: <Inventory></Inventory>
+          element: <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
         },
         {
           path:'about',
